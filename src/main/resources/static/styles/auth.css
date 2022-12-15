@@ -1,0 +1,42 @@
+body{
+    background: rgba(14, 13, 13, 0.95) !important;
+    display: flex;
+    align-items: center;
+    height: 100vh;
+    color: #ffffff !important;
+}
+main {
+    margin: auto;
+    width: 100% ;
+    max-width: 380px !important;
+}
+form input[type="email"] {
+    border-bottom-right-radius: 0 ;
+    border-bottom-left-radius: 0 ;
+    margin-bottom: -1px;
+    border: black;
+    background-color: RGBA(33,37,41,var(--bs-bg-opacity,1))!important;
+}
+form input[type="password"] {
+    background-color: RGBA(33,37,41,var(--bs-bg-opacity,1))!important;
+    border-top-right-radius: 0 ;
+    border-top-left-radius: 0 ;
+    margin-bottom: 10px;
+    border: black;
+    color: white;
+}
+form input[type="repeat_password"] {
+    border: black;
+    border-radius: 0 ;
+    background-color: RGBA(33,37,41,var(--bs-bg-opacity,1))!important;
+}
+input:focus{
+    color: white;
+}
+input:active{
+    color: white;
+}
+.form-control {
+    color: white !important;
+}
+

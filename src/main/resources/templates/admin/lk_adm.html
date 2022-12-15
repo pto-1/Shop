@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
+    <meta name="generator" content="Hugo 0.104.2">
+    <title>Личный кабинет администратора</title>
+    <link href="/styles/lk.css" rel="stylesheet">
+    <link href="/styles/main.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+</head>
+<body>
+<div class="container">
+    <header class="blog-header lh-1 py-3">
+        <div class="row flex-nowrap justify-content-between align-items-center">
+            <a class="col-4 pt-1" href="/index">
+                <span class="labelSub">ЖЕЛУДЬ</span>
+            </a>
+            <div class="col-4 d-flex justify-content-end align-items-center">
+                <div class="d-flex mx-4 ">
+                    <form method="get" th:action="@{/cart}">
+                        <button class="w-20 btn btn-primary" type="submit">Корзина</button>
+                    </form>
+                </div>
+                <div class="d-flex mx-4 ">
+                    <form method="get" th:action="@{/orders}">
+                        <button class="w-20 btn btn-primary" type="submit">Заказы</button>
+                    </form>
+                </div>
+                <div class="d-flex mx-4 ">
+                    <form method="post" th:action="@{/logout}">
+                        <button class="w-20 btn btn-primary" type="submit">Выйти</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </header>
+</div>
+
+<main class="container">
+
+    <div class="row mb-2">
+        <h3 class="mb-3">Личный кабинет администратора</h3>
+
+        <div class="col-md-6">
+            <div th:each="product : ${products}">
+                <div class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
+                    <div class="col p-4 d-flex flex-column position-static">
+                        <strong class="d-inline-block mb-2 text-success" th:text="'Цена: ' + ${product.getPrice()}"></strong>
+                        <a th:href="@{/product/info/{id}(id=${product.getId()})}" th:text="${product.getTitle()}" id="title" class="card-text mb-auto"></a>
+                        <p class="card-text mb-auto" th:text="${product.getDescription()}"></p>
+                        <p th:text="'Склад: ' + ${product.getWarehouse()}"></p>
+                        <p th:text="'Продавец: ' + ${product.getSeller()}"></p>
+                        <p th:text="'Категория товара: ' + ${product.getCategory().getName()}"></p>
+                        <div class="d-flex justify-content-between">
+                            <a class="b-edit btn btn-light" th:href="@{/admin/product/edit/{id}(id=${product.getId()})}">Редактировать</a>
+                            <a class="b-edit btn btn-danger" th:href="@{/admin/product/delete/{id}(id=${product.getId()})}">Удалить</a>
+                        </div>
+                    </div>
+                    <div class="col-auto d-none d-lg-block">
+                        <img th:src="'/files/' + ${product.imageList[0].getFileName()}" width="200" height="250"/>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="p-4 rounded text-bg-dark">
+                <a class="w-100 btn btn-lg btn-primary mt-3" th:href="@{/admin/product/add}">Добавить товар</a>
+            </div>
+        </div>
+    </div>
+</main>
+<footer class="blog-footer container text-center mb-2">
+    © 2022
+</footer>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"
+        integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3"
+        crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.min.js"
+        integrity="sha384-cuYeSxntonz0PPNlHhBs68uyIAVpIIOZZ5JqeqvYYIcEL727kskC66kF92t6Xl2V"
+        crossorigin="anonymous"></script>
+</body>
+</html>
